@@ -1,0 +1,113 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Portal/dashboards/2019-01-01-preview/dashboard.json#",
+  "name": "Azure-Disk-Encryption-CMK-Dashboard",
+  "type": "Microsoft.Portal/dashboards",
+  "location": "centralindia",
+  "tags": {
+    "hidden-title": "Azure Disk Encryption & CMK Security Dashboard"
+  },
+  "properties": {
+    "lenses": {
+      "0": {
+        "order": 0,
+        "parts": {
+          "0": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "colSpan": 4,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [],
+              "type": "Extension/HubsExtension/PartType/MarkdownPart",
+              "settings": {
+                "content": {
+                  "settings": {
+                    "title": "Azure CMK Security Architecture",
+                    "subtitle": "Server-Side Encryption with Customer-Managed Keys",
+                    "content": "### Architecture Flow\n```\nAzure Key Vault (kvcmk17476)\n      ? [RSA 2048 CMK]\n      ?\nDisk Encryption Set (des-disk-cmk)\n      ? [Managed Identity]\n      ?\nManaged OS Disk (vm-encrypted)\n```\n* **Encryption**: AES-256 Envelope Encryption\n* **Status**: Auto Key Rotation Enabled\n* **Audit**: Full Activity Log Tracking"
+                  }
+                }
+              }
+            }
+          },
+          "1": {
+            "position": {
+              "x": 4,
+              "y": 0,
+              "colSpan": 4,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [],
+              "type": "Extension/HubsExtension/PartType/MarkdownPart",
+              "settings": {
+                "content": {
+                  "settings": {
+                    "title": "Project Objectives & Compliance",
+                    "subtitle": "Problem Statement & Governance",
+                    "content": "> **Problem Statement:** Securing Azure VM disks requires customer-managed encryption keys to prevent unauthorized access, breaches, and data loss.\n\n* **Student ID**: `2400032815@kluniversity.in`\n* **Role**: `Key Vault Crypto Service Encryption User`\n* **Purge Protection**: Enabled (Mandatory)"
+                  }
+                }
+              }
+            }
+          },
+          "2": {
+            "position": {
+              "x": 0,
+              "y": 3,
+              "colSpan": 4,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": "/subscriptions/9a97bd8c-a261-4a91-81df-22880997e84e/resourceGroups/rg-disk-encryption/providers/Microsoft.Compute/virtualMachines/vm-encrypted"
+                }
+              ],
+              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
+              "settings": {
+                "title": "VM CPU Utilization (Percentage CPU)"
+              }
+            }
+          },
+          "3": {
+            "position": {
+              "x": 4,
+              "y": 3,
+              "colSpan": 4,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": "/subscriptions/9a97bd8c-a261-4a91-81df-22880997e84e/resourceGroups/rg-disk-encryption/providers/Microsoft.KeyVault/vaults/kvcmk17476"
+                }
+              ],
+              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
+              "settings": {
+                "title": "Key Vault API Availability & Latency"
+              }
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "model": {
+        "timeRange": {
+          "value": {
+            "relative": {
+              "duration": 24,
+              "timeUnit": 1
+            }
+          },
+          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+        }
+      }
+    }
+  }
+}
