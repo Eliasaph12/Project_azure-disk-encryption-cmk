@@ -1,0 +1,10 @@
+# Azure & Credentials
+.azure/
+*.pem
+*.key
+id_rsa*
+*.tfstate*
+
+# OS Files
+.DS_Store
+Thumbs.db

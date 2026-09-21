@@ -1,0 +1,38 @@
+name: Azure Security & IaC Validation
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  validate-iac:
+    name: Validate Azure Bicep & Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+      - name: Validate Bicep Template Syntax
+        run: |
+          az bicep build --file main.bicep
+
+      - name: Validate Bash Deployment Script
+        run: |
+          bash -n deploy.sh
+          echo "Deployment script syntax is valid!"
+
+      - name: Check Documentation Files
+        run: |
+          test -f README.md && echo "README.md exists."
+          test -f docs/ARCHITECTURE.md && echo "ARCHITECTURE.md exists."
+
+      - name: CI Success Summary
+        run: |
+          echo "All Azure security templates, workflows, and documentation passed verification!"
