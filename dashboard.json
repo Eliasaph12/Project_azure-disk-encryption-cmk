@@ -15,8 +15,8 @@
             "position": {
               "x": 0,
               "y": 0,
-              "colSpan": 4,
-              "rowSpan": 3
+              "colSpan": 6,
+              "rowSpan": 4
             },
             "metadata": {
               "inputs": [],
@@ -26,7 +26,7 @@
                   "settings": {
                     "title": "Azure CMK Security Architecture",
                     "subtitle": "Server-Side Encryption with Customer-Managed Keys",
-                    "content": "### Architecture Flow\n```\nAzure Key Vault (kvcmk17476)\n      ? [RSA 2048 CMK]\n      ?\nDisk Encryption Set (des-disk-cmk)\n      ? [Managed Identity]\n      ?\nManaged OS Disk (vm-encrypted)\n```\n* **Encryption**: AES-256 Envelope Encryption\n* **Status**: Auto Key Rotation Enabled\n* **Audit**: Full Activity Log Tracking"
+                    "content": "### End-to-End Cryptographic Flow\n```text\n[Azure Key Vault: kvcmk17476]\n       |\n       | (RSA 2048-bit Key: disk-encryption-key)\n       v\n[Disk Encryption Set: des-disk-cmk]\n       |\n       | (System-Assigned Managed Identity)\n       v\n[Managed OS Disk: vm-encrypted]\n```\n* **Encryption Standard**: Hardware-accelerated AES-256 Envelope Encryption\n* **Key Rotation**: Automatic Zero-Downtime Key Synchronization\n* **Access Model**: Role `Key Vault Crypto Service Encryption User`\n* **Resilience**: Purge Protection & Soft Delete Enabled"
                   }
                 }
               }
@@ -34,10 +34,10 @@
           },
           "1": {
             "position": {
-              "x": 4,
+              "x": 6,
               "y": 0,
-              "colSpan": 4,
-              "rowSpan": 3
+              "colSpan": 6,
+              "rowSpan": 4
             },
             "metadata": {
               "inputs": [],
@@ -47,7 +47,7 @@
                   "settings": {
                     "title": "Project Objectives & Compliance",
                     "subtitle": "Problem Statement & Governance",
-                    "content": "> **Problem Statement:** Securing Azure VM disks requires customer-managed encryption keys to prevent unauthorized access, breaches, and data loss.\n\n* **Student ID**: `2400032815@kluniversity.in`\n* **Role**: `Key Vault Crypto Service Encryption User`\n* **Purge Protection**: Enabled (Mandatory)"
+                    "content": "> **Problem Statement:** Securing Azure VM disks requires customer-managed encryption keys to prevent unauthorized access, breaches, and data loss.\n\n* **Student ID / Caller:** `2400032815@kluniversity.in`\n* **Institution:** Koneru Lakshmaiah Education Foundation (KL University)\n* **Subscription ID:** `9a97bd8c-a261-4a91-81df-22880997e84e`\n* **Resource Group:** `rg-disk-encryption` (Central India)\n* **VM Configuration:** `Standard_B2ats_v2` | Ubuntu 24.04 LTS"
                   }
                 }
               }
@@ -56,40 +56,42 @@
           "2": {
             "position": {
               "x": 0,
-              "y": 3,
-              "colSpan": 4,
-              "rowSpan": 3
+              "y": 4,
+              "colSpan": 6,
+              "rowSpan": 4
             },
             "metadata": {
-              "inputs": [
-                {
-                  "name": "ComponentId",
-                  "value": "/subscriptions/9a97bd8c-a261-4a91-81df-22880997e84e/resourceGroups/rg-disk-encryption/providers/Microsoft.Compute/virtualMachines/vm-encrypted"
-                }
-              ],
-              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
+              "inputs": [],
+              "type": "Extension/HubsExtension/PartType/MarkdownPart",
               "settings": {
-                "title": "VM CPU Utilization (Percentage CPU)"
+                "content": {
+                  "settings": {
+                    "title": "Encryption Verification & Proof",
+                    "subtitle": "Live Cloud Shell Inspection Output",
+                    "content": "### Verified Managed Disk Encryption Status\n```json\n{\n  \"DiskEncryptionSet\": \"des-disk-cmk\",\n  \"DiskName\": \"vm-encrypted_OsDisk_1_f7bc4d5d7a334eb8a92eec80d954bc12\",\n  \"EncryptionType\": \"EncryptionAtRestWithCustomerKey\"\n}\n```\n* **Envelope Encryption**: AES-256 DEK wrapped by RSA 2048 KEK.\n* **Storage Fabric**: Cryptographic keys managed independently from Microsoft platform keys."
+                  }
+                }
               }
             }
           },
           "3": {
             "position": {
-              "x": 4,
-              "y": 3,
-              "colSpan": 4,
-              "rowSpan": 3
+              "x": 6,
+              "y": 4,
+              "colSpan": 6,
+              "rowSpan": 4
             },
             "metadata": {
-              "inputs": [
-                {
-                  "name": "ComponentId",
-                  "value": "/subscriptions/9a97bd8c-a261-4a91-81df-22880997e84e/resourceGroups/rg-disk-encryption/providers/Microsoft.KeyVault/vaults/kvcmk17476"
-                }
-              ],
-              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
+              "inputs": [],
+              "type": "Extension/HubsExtension/PartType/MarkdownPart",
               "settings": {
-                "title": "Key Vault API Availability & Latency"
+                "content": {
+                  "settings": {
+                    "title": "Security Experiments & Audit Trail",
+                    "subtitle": "Key Lifecycle & Azure Monitor Logs",
+                    "content": "### Security Experiments Conducted\n* **Experiment A (Key Rotation):** Rotated to Key `v2`; DES synced automatically without VM reboot.\n* **Experiment B (Access Revocation):** Disabled CMK; VM restart was blocked, preventing unauthorized access. Re-enabling restored VM.\n\n### Non-Repudiation Audit Trail\n* `Deallocate VM` -> **Started**\n* `Update Key Vault` -> **Succeeded**\n* `Create Virtual Machine` -> **Succeeded**\n* `Create or Update Disk` -> **Accepted**"
+                  }
+                }
               }
             }
           }
