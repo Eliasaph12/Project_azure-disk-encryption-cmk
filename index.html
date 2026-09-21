@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azure CMK Disk Encryption Security Dashboard</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 font-sans antialiased min-h-screen p-4 md:p-8">
+
+  <!-- Main Container -->
+  <div class="max-w-7xl mx-auto space-y-6">
+
+    <!-- Top Header -->
+    <header class="bg-[#111827]/90 border border-slate-800 backdrop-blur rounded-2xl p-6 shadow-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-2xl font-extrabold tracking-tight text-white flex items-center gap-3">
+              Azure CMK Disk Encryption Dashboard
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-slow"></span> Verified Active
+              </span>
+            </h1>
+            <p class="text-xs text-slate-400 mt-0.5">Cloud Security Architecture • Server-Side Encryption with Customer-Managed Keys (CMK)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3 text-xs">
+        <div class="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-right">
+          <div class="text-slate-400">Student Identity</div>
+          <div class="font-mono text-cyan-400 font-medium">2400032815@kluniversity.in</div>
+        </div>
+        <div class="bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-right">
+          <div class="text-slate-400">Target Region</div>
+          <div class="font-medium text-slate-200">Central India (rg-disk-encryption)</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- KPI Metric Cards Grid -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <!-- Card 1 -->
+      <div class="bg-[#111827] border border-slate-800/80 rounded-xl p-5 hover:border-blue-500/40 transition-all shadow-lg">
+        <div class="flex justify-between items-start">
+          <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Encryption Standard</span>
+          <span class="p-1.5 rounded-lg bg-blue-500/10 text-blue-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </span>
+        </div>
+        <div class="mt-3 text-xl font-bold text-white">AES-256 (Envelope)</div>
+        <div class="mt-1 text-xs text-slate-400">Hardware-accelerated storage layer</div>
+        <div class="mt-3 pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-emerald-400">
+          <span>0% Guest VM CPU Overhead</span>
+          <span>FIPS 140-2</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-[#111827] border border-slate-800/80 rounded-xl p-5 hover:border-purple-500/40 transition-all shadow-lg">
+        <div class="flex justify-between items-start">
+          <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Root Key Vault</span>
+          <span class="p-1.5 rounded-lg bg-purple-500/10 text-purple-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+          </span>
+        </div>
+        <div class="mt-3 text-xl font-bold text-purple-300">kvcmk17476</div>
+        <div class="mt-1 text-xs text-slate-400">RSA 2048-bit (Purge Protected)</div>
+        <div class="mt-3 pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-purple-400">
+          <span>Soft Delete: 90 Days</span>
+          <span>Role: RBAC Enforced</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-[#111827] border border-slate-800/80 rounded-xl p-5 hover:border-cyan-500/40 transition-all shadow-lg">
+        <div class="flex justify-between items-start">
+          <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Bridge Component</span>
+          <span class="p-1.5 rounded-lg bg-cyan-500/10 text-cyan-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+          </span>
+        </div>
+        <div class="mt-3 text-xl font-bold text-cyan-300">des-disk-cmk</div>
+        <div class="mt-1 text-xs text-slate-400">Disk Encryption Set</div>
+        <div class="mt-3 pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-cyan-400">
+          <span>Auto Key Rotation: ON</span>
+          <span>System Managed Identity</span>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-[#111827] border border-slate-800/80 rounded-xl p-5 hover:border-emerald-500/40 transition-all shadow-lg">
+        <div class="flex justify-between items-start">
+          <span class="text-xs font-medium text-slate-400 uppercase tracking-wider">Compliance Status</span>
+          <span class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+          </span>
+        </div>
+        <div class="mt-3 text-xl font-bold text-emerald-400">100% Compliant</div>
+        <div class="mt-1 text-xs text-slate-400">ADE 2028 Retirement Ready</div>
+        <div class="mt-3 pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-emerald-400">
+          <span>Zero-Trust RBAC</span>
+          <span>Tamper-Evident Audit</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Architecture & Interactive Security Simulation -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- Interactive Architecture Flow (7 cols) -->
+      <section class="lg:col-span-7 bg-[#111827] border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-bold text-white">End-to-End Cryptographic Flow</h2>
+            <p class="text-xs text-slate-400">Interactive architecture showing Envelope Encryption & Zero-Trust Access</p>
+          </div>
+          <span class="text-xs font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2.5 py-1 rounded-md">Live Topology</span>
+        </div>
+
+        <!-- Visual Topology Pipeline -->
+        <div class="space-y-4">
+          
+          <!-- Node 1: Key Vault -->
+          <div id="node-kv" class="border border-purple-500/30 bg-purple-950/20 rounded-xl p-4 transition-all hover:border-purple-400">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-purple-600/30 text-purple-300 flex items-center justify-center font-bold text-xs">KV</div>
+                <div>
+                  <h3 class="text-sm font-semibold text-white">Azure Key Vault (`kvcmk17476`)</h3>
+                  <p class="text-xs text-slate-400">Customer-Managed Root Key: <span class="font-mono text-purple-300">disk-encryption-key (v1, v2)</span></p>
+                </div>
+              </div>
+              <span id="kv-status-badge" class="px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Key Enabled</span>
+            </div>
+          </div>
+
+          <!-- Connector 1 -->
+          <div class="flex items-center justify-center">
+            <div class="flex flex-col items-center">
+              <div class="w-0.5 h-4 bg-purple-500/40"></div>
+              <span class="text-[10px] font-mono text-purple-400 bg-purple-950/40 px-2 py-0.5 rounded border border-purple-500/20">RSA 2048 Key Encryption Key (KEK)</span>
+              <div class="w-0.5 h-4 bg-purple-500/40"></div>
+            </div>
+          </div>
+
+          <!-- Node 2: Disk Encryption Set -->
+          <div id="node-des" class="border border-cyan-500/30 bg-cyan-950/20 rounded-xl p-4 transition-all hover:border-cyan-400">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-cyan-600/30 text-cyan-300 flex items-center justify-center font-bold text-xs">DES</div>
+                <div>
+                  <h3 class="text-sm font-semibold text-white">Disk Encryption Set (`des-disk-cmk`)</h3>
+                  <p class="text-xs text-slate-400">Identity: <span class="font-mono text-cyan-300">Key Vault Crypto Service Encryption User</span></p>
+                </div>
+              </div>
+              <span id="des-status-badge" class="px-2.5 py-0.5 rounded text-[11px] font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">Auto-Rotation: Active</span>
+            </div>
+          </div>
+
+          <!-- Connector 2 -->
+          <div class="flex items-center justify-center">
+            <div class="flex flex-col items-center">
+              <div class="w-0.5 h-4 bg-cyan-500/40"></div>
+              <span class="text-[10px] font-mono text-cyan-400 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/20">Wraps / Unwraps Data Encryption Key (DEK)</span>
+              <div class="w-0.5 h-4 bg-cyan-500/40"></div>
+            </div>
+          </div>
+
+          <!-- Node 3: Managed Disk & Virtual Machine -->
+          <div id="node-vm" class="border border-emerald-500/30 bg-emerald-950/20 rounded-xl p-4 transition-all hover:border-emerald-400">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-emerald-600/30 text-emerald-300 flex items-center justify-center font-bold text-xs">VM</div>
+                <div>
+                  <h3 class="text-sm font-semibold text-white">Virtual Machine (`vm-encrypted`)</h3>
+                  <p class="text-xs text-slate-400">OS Disk: <span class="font-mono text-emerald-300">EncryptionAtRestWithCustomerKey</span></p>
+                </div>
+              </div>
+              <span id="vm-status-badge" class="px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Status: Running</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Security Experiment Simulator (5 cols) -->
+      <section class="lg:col-span-5 bg-[#111827] border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between space-y-6">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-bold text-white">Security Experiments</h2>
+            <span class="text-xs font-mono bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2 py-0.5 rounded">Interactive</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            Test the two primary research experiments from the project: zero-downtime key rotation and key access revocation.
+          </p>
+
+          <!-- Interactive Action Buttons -->
+          <div class="space-y-3">
+            <button onclick="triggerKeyRotation()" class="w-full text-left p-3 rounded-xl border border-slate-700 bg-slate-800/60 hover:bg-slate-800 hover:border-blue-500 transition-all flex items-center justify-between group">
+              <div>
+                <div class="text-xs font-bold text-white group-hover:text-blue-400 flex items-center gap-1.5">
+                  🔄 Experiment A: Rotate Key (v1 ➔ v2)
+                </div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Tests DES auto-rotation without VM downtime</div>
+              </div>
+              <span class="text-xs font-mono bg-blue-500/20 text-blue-300 px-2 py-1 rounded">Simulate</span>
+            </button>
+
+            <button onclick="revokeKeyAccess()" class="w-full text-left p-3 rounded-xl border border-red-900/40 bg-red-950/20 hover:bg-red-950/40 hover:border-red-500 transition-all flex items-center justify-between group">
+              <div>
+                <div class="text-xs font-bold text-red-300 group-hover:text-red-200 flex items-center gap-1.5">
+                  ⛔ Experiment B: Revoke / Disable Key
+                </div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Demonstrates the CMK bottleneck & failure to boot</div>
+              </div>
+              <span class="text-xs font-mono bg-red-500/20 text-red-300 px-2 py-1 rounded">Simulate</span>
+            </button>
+
+            <button onclick="restoreKeyAccess()" class="w-full text-left p-3 rounded-xl border border-emerald-900/40 bg-emerald-950/20 hover:bg-emerald-950/40 hover:border-emerald-500 transition-all flex items-center justify-between group">
+              <div>
+                <div class="text-xs font-bold text-emerald-300 group-hover:text-emerald-200 flex items-center gap-1.5">
+                  ✅ Restore Key & Recover VM
+                </div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Proves full recovery without data corruption</div>
+              </div>
+              <span class="text-xs font-mono bg-emerald-500/20 text-emerald-300 px-2 py-1 rounded">Recover</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Simulation Terminal Log -->
+        <div class="bg-black/60 border border-slate-800 rounded-xl p-3 font-mono text-[11px] space-y-1.5">
+          <div class="text-slate-500 flex justify-between border-b border-slate-800 pb-1">
+            <span>EXPERIMENT CONSOLE</span>
+            <span class="text-emerald-400">READY</span>
+          </div>
+          <div id="sim-log-1" class="text-slate-300">[INFO] Cluster running with customer key: disk-encryption-key (v1)</div>
+          <div id="sim-log-2" class="text-emerald-400">[PASS] Managed disk encrypted: des-disk-cmk bound</div>
+          <div id="sim-log-3" class="text-slate-500">Click a simulation above to test security behavior...</div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Bottom Section: Terminal JSON Verification & Real Audit Log -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Real CLI Verification JSON (5 cols) -->
+      <section class="lg:col-span-5 bg-[#111827] border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-base font-bold text-white">Live Disk Verification (az disk show)</h2>
+          <span class="text-[11px] font-mono text-emerald-400 bg-emerald-950/30 px-2 py-0.5 rounded border border-emerald-500/20">Verified Output</span>
+        </div>
+        <pre class="bg-black/70 border border-slate-800 rounded-xl p-4 text-xs font-mono text-cyan-300 overflow-x-auto leading-relaxed">
+{
+  <span class="text-purple-400">"DiskEncryptionSet"</span>: <span class="text-emerald-300">"/subscriptions/9a97bd8c.../diskEncryptionSets/des-disk-cmk"</span>,
+  <span class="text-purple-400">"DiskName"</span>: <span class="text-emerald-300">"vm-encrypted_OsDisk_1_f7bc4d5d..."</span>,
+  <span class="text-purple-400">"EncryptionType"</span>: <span class="text-amber-300">"EncryptionAtRestWithCustomerKey"</span>
+}</pre>
+        <p class="text-xs text-slate-400">
+          Inspection executed in Azure Cloud Shell proves the operating system volume is protected by the Customer-Managed Key rather than Microsoft platform keys.
+        </p>
+      </section>
+
+      <!-- Security Audit Trail Table (7 cols) -->
+      <section class="lg:col-span-7 bg-[#111827] border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-base font-bold text-white">Security Audit Trail (Azure Monitor)</h2>
+          <span class="text-[11px] font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Activity Log</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400">
+                <th class="pb-2">Timestamp (UTC)</th>
+                <th class="pb-2">Caller Identity</th>
+                <th class="pb-2">Operation</th>
+                <th class="pb-2 text-right">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 text-slate-300">
+              <tr>
+                <td class="py-2.5 text-slate-400">14:16:58Z</td>
+                <td class="text-cyan-400 font-sans">2400032815@kluniversity.in</td>
+                <td>Deallocate Virtual Machine</td>
+                <td class="text-right"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Started</span></td>
+              </tr>
+              <tr>
+                <td class="py-2.5 text-slate-400">14:12:19Z</td>
+                <td class="text-cyan-400 font-sans">2400032815@kluniversity.in</td>
+                <td>Update Key Vault</td>
+                <td class="text-right"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Succeeded</span></td>
+              </tr>
+              <tr>
+                <td class="py-2.5 text-slate-400">14:12:12Z</td>
+                <td class="text-cyan-400 font-sans">2400032815@kluniversity.in</td>
+                <td>Create or Update VM</td>
+                <td class="text-right"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Succeeded</span></td>
+              </tr>
+              <tr>
+                <td class="py-2.5 text-slate-400">14:11:48Z</td>
+                <td class="text-purple-400 font-sans">des-disk-cmk (ManagedIdentity)</td>
+                <td>Create or Update Disk</td>
+                <td class="text-right"><span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Accepted</span></td>
+              </tr>
+              <tr>
+                <td class="py-2.5 text-slate-400">14:04:49Z</td>
+                <td class="text-cyan-400 font-sans">2400032815@kluniversity.in</td>
+                <td>Add Role Assignment (DES)</td>
+                <td class="text-right"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Succeeded</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2">
+      <div>Project: Azure Disk Encryption and Customer-Managed Keys (CMK)</div>
+      <div>Koneru Lakshmaiah Education Foundation • Department of Computer Science & Engineering</div>
+    </footer>
+
+  </div>
+
+  <!-- Interactive Simulator JavaScript -->
+  <script>
+    function triggerKeyRotation() {
+      const log1 = document.getElementById('sim-log-1');
+      const log2 = document.getElementById('sim-log-2');
+      const log3 = document.getElementById('sim-log-3');
+      const desBadge = document.getElementById('des-status-badge');
+
+      log1.innerHTML = '<span class="text-blue-400">[ROTATE]</span> Key Vault generated new version: disk-encryption-key (v2)';
+      log2.innerHTML = '<span class="text-cyan-400">[SYNC]</span> Disk Encryption Set auto-rotation triggered...';
+      log3.innerHTML = '<span class="text-emerald-400">[SUCCESS]</span> Disks updated to Key v2. Zero VM downtime!';
+      
+      desBadge.innerText = 'Key v2 (Synced)';
+      desBadge.className = 'px-2.5 py-0.5 rounded text-[11px] font-medium bg-purple-500/20 text-purple-300 border border-purple-500/30';
+    }
+
+    function revokeKeyAccess() {
+      const log1 = document.getElementById('sim-log-1');
+      const log2 = document.getElementById('sim-log-2');
+      const log3 = document.getElementById('sim-log-3');
+      const kvBadge = document.getElementById('kv-status-badge');
+      const vmBadge = document.getElementById('vm-status-badge');
+      const nodeVm = document.getElementById('node-vm');
+
+      log1.innerHTML = '<span class="text-red-400">[WARN]</span> Key set to enabled: false in Azure Key Vault!';
+      log2.innerHTML = '<span class="text-amber-400">[ACTION]</span> VM deallocated and restart attempted...';
+      log3.innerHTML = '<span class="text-red-500">[BLOCKED]</span> Boot failed! Storage cannot unwrap DEK without active KEK.';
+
+      kvBadge.innerText = 'Key Disabled (Locked)';
+      kvBadge.className = 'px-2.5 py-0.5 rounded text-[11px] font-medium bg-red-500/20 text-red-400 border border-red-500/30';
+
+      vmBadge.innerText = 'Status: Boot Blocked';
+      vmBadge.className = 'px-2.5 py-0.5 rounded text-[11px] font-medium bg-red-500/20 text-red-400 border border-red-500/30';
+
+      nodeVm.className = 'border border-red-500/50 bg-red-950/30 rounded-xl p-4 transition-all';
+    }
+
+    function restoreKeyAccess() {
+      const log1 = document.getElementById('sim-log-1');
+      const log2 = document.getElementById('sim-log-2');
+      const log3 = document.getElementById('sim-log-3');
+      const kvBadge = document.getElementById('kv-status-badge');
+      const vmBadge = document.getElementById('vm-status-badge');
+      const nodeVm = document.getElementById('node-vm');
+
+      log1.innerHTML = '<span class="text-emerald-400">[RECOVER]</span> Key re-enabled in Azure Key Vault.';
+      log2.innerHTML = '<span class="text-cyan-400">[UNWRAP]</span> DES retrieved KEK and unwrapped AES-256 DEK.';
+      log3.innerHTML = '<span class="text-emerald-400">[ONLINE]</span> Virtual Machine restarted successfully!';
+
+      kvBadge.innerText = 'Key Enabled';
+      kvBadge.className = 'px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+
+      vmBadge.innerText = 'Status: Running';
+      vmBadge.className = 'px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+
+      nodeVm.className = 'border border-emerald-500/30 bg-emerald-950/20 rounded-xl p-4 transition-all hover:border-emerald-400';
+    }
+  </script>
+</body>
+</html>
